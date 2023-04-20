@@ -11,8 +11,13 @@ Cmder --> Settings --> Startup --> Tasks: "Add/Refresh default tasks"
 ```sh
 > far:config
 # Panel.Tree.TurnOffCompletely = false
-# F9, Left/Right, Tree Panel (F9, L/R, T|I|V)
+# F9, Left/Right, Tree Panel (F9, L/R, T|I|V
+)
 ```
+
+### Micro
+https://github.com/zyedidia/micro
+
 ### Windows Terminal
 #### Install Windows Terminal from Store
 Default Terminal w/new build:
