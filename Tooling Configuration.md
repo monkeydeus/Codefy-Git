@@ -6,7 +6,8 @@ https://farmanager.com/download.php?l=en
 
 Integrate into Cmder
 Cmder --> Settings --> Startup --> Tasks: "Add/Refresh default tasks"
-![[Pasted image 20230420115454.png]]
+![Image](images/Pasted%20image%2020230420115454.png) 
+
 ##### BONUS: TreeView
 ```sh
 > far:config
@@ -21,14 +22,15 @@ https://github.com/zyedidia/micro
 ### Windows Terminal
 #### Install Windows Terminal from Store
 Default Terminal w/new build:
-![[Pasted image 20230420084741.png]]
-![[Pasted image 20230420084817.png]]
+![Image](images/Pasted%20image%2020230420084741.png)
+![Image](images/Pasted%20image%2020230420084817.png) 
 
 After "Get" from WIndows Store:
-![[Pasted image 20230420085125.png]]
+![Image](images/Pasted%20image%2020230420085125.png) 
 
 Settings:
-![[Pasted image 20230420085200.png]]
+![Image](images/Pasted%20image%2020230420085200.png) 
+
 
 #### Install Oh My Posh
 	[Windows | Oh My Posh](https://ohmyposh.dev/docs/installation/windows)
@@ -36,21 +38,26 @@ Settings:
 		```ps
 		Set-ExecutionPolicy Bypass -Scope Process -Force; Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://ohmyposh.dev/install.ps1'))
 		```
-#### Install Fonts (Ligature Support, Powerline Glyphso)
+#### Install Fonts (Ligature Support, Powerline Glyphs)
 	- FiraCode
 	- JetBrains Mono
 	- SourceCodePro
-	```bash
+  
+```bash
 	oh-my-posh font install
-	```
-	![[Pasted image 20230420085822.png]]
+```
+![Image](images/Pasted%20image%2020230420085822.png) 
+	
 ##### Can set per profile, or default
 - Per profile:
-	![[Pasted image 20230420090947.png]]
-	![[Pasted image 20230420090928.png]]
+
+![Image](images/Pasted%20image%2020230420090947.png) 
+
+![Image](images/Pasted%20image%2020230420090928.png) 
 
 - Default:
-![[Pasted image 20230420090743.png]]
+![Image](images/Pasted%20image%2020230420090743.png) 
+
 #### Change Your Prompt
 [Change your prompt | Oh My Posh](https://ohmyposh.dev/docs/installation/prompt)
 ```sh
@@ -67,8 +74,8 @@ Reload new (edited) profile:
 ```sh
 > . $PROFILE
 ```
+![Image](images/Pasted%20image%2020230420091438.png) 
 
-![[Pasted image 20230420091438.png]]
 
 [Customize | Oh My Posh](https://ohmyposh.dev/docs/installation/customize)
 ```sh
@@ -79,16 +86,16 @@ Reload new (edited) profile:
 ```
 
 Themes: https://ohmyposh.dev/docs/themes
-![[Pasted image 20230420092801.png]]
+![Image](images/Pasted%20image%2020230420092801.png) 
+
 
 
 #### Terminal Icons:
-![[Pasted image 20230420093155.png]]
+![Image](images/Pasted%20image%2020230420093155.png) 
 
 ```ps
 Install-Module -Name Terminal-Icons -Repository PSGallery
 # notepad $PROFILE
 Import-Module -Name Terminal-Icons
 ```
-
-![[Pasted image 20230420093548.png]]
+![Image](images/Pasted%20image%2020230420093548.png) 
