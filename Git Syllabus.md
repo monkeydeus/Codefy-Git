@@ -62,9 +62,6 @@ Different trees can reference the same objects:
 
 ### The Stash
 
-
-
-
 ## Using Git
 ### What is a commit?
 A commit is a snapshot of the current state of a Git repository. It includes a set of changes to the repository's files that you've made since the last commit, along with a commit message describing the changes. Commits allow you to keep track of changes to your code over time
@@ -148,20 +145,125 @@ git log
 ```
 
 ### Moving within the Repo
+You will need to know how to navigate between branches in order to succesfully contribute your code
 #### branch
+Used to manage the branches in your local repository
+
+The command on its own will list the branches in your local repository
+```c
+git branch
+```
+
+The command will create a new branch in your local with the provided name
+```c
+git branch <name>
+```
+
+Available options:
+```c
+-a: Lists all local and remote branches.
+-d <branch name>: Deletes the specified branch. Use -D instead to force delete the branch even if it has unmerged changes.
+-m <old name> <new name>: Renames the specified branch.
+-r: Lists all remote branches.
+-v: Lists all branches with the last commit message for each.
+```
 #### checkout
+You can use the checkout command if you want to actually switch over to a branch commit or file in your local repository. 
+```c
+git checkout <branch-name>
+```
+
+Available options:
+```c
+-f: Forces Git to switch branches even if there are uncommitted changes in the current branch that would be overwritten.
+-b <new-branch-name>: Creates a new branch and switches to it.
+```
 #### switch
+Similar to the checkout command where it will let you switch to another branch. This is the safer and preferred method of switching branches as its a more specific command you can use when switching branches.
+```c
+ git switch <branch name>
+```
+
+Available Options:
+```c
+-c <new-branch-name> or --create <new branch name>: Creates a new branch with the specified name and switches to it.
+-f or --force: Forces Git to switch branches even if there are uncommitted changes in the current branch that would be overwritten.
+-d <branch-name> or --delete <branch name>: Deletes the specified branch.
+```
 #### tag
+A tag is a label or bookmark that is associated with a specific commit in a repository. Tags are typically used to mark significant milestones, releases, or versions of a project, and they provide a way to easily reference a specific commit in the future.
 
+Create a tag for a specific commit
+```c
+git tag <tag-name> <commit-hash>
+```
+
+Delete a tag
+```c
+git tag myTag -d
+```
 ### Modifying the Repo
+Once you code is dev complete it is time to push your changes back into the main branch
 #### Merge
-#### Rebase
+Merge is a command that is used to combine changes from one branch into another. It is one of the core features of Git that enables collaboration among developers working on the same project.
 
-### Fixing the Repo
-#### amend commit
-#### Revert
-#### Reset
+As an example, lets say we have a feature-branch branch that we want to merge back into our main branch.
+1. Create your new branch
+```c
+git branch feature-branch
+```
+2. Switch to your new branch
+```c
+git switch feature-branch
+```
+3. Once your code is dev complete begin merge process back into main. Start with switching to main branch
+```c
+git checkout main
+```
+4. Merge the changes from your feature branch into the main branch
+```c
+git merge feature-branch
+```
+
+This command will take all of the changes in your feature-branch into the main branch and create a merge commit
+
+#### Conflicts
+Sometimes when you are merging code you will have conflicts between two of the same files. This occurrs when two contributors make changes to the same part of the same file, git will give you conflict markers and will allow you to decide which of the changes to include.
 #### Rebase
+The rebase command is used to reapply changes from one branch onto another. Unlike git merge, which creates a new merge commit, git rebase applies changes from one branch directly on top of another branch's history, resulting in a linear project history. This changes the history of the branch you are rebasing into, which can make the history difficult to trace. It is not recommended to rebase often in a project
+### Fixing the Repo
+Sometimes we run commands and make changes to our repo that we do not intend to make. Here are a few options to undo the changes that have been made.
+#### amend commit
+This will make changes to the most recent commit in your repository. This can be useful if you notice a mistake or typo in your commit message or if you need to add or remove files from the commit. You are essentially replacing the old commit with your latest updates. This can cause issues if you have multiple contributors working off of a commit that you plan to ammend.
+
+To ammend a commit
+```c
+git commit --amend
+```
+#### Revert
+When you use revert, it creates a new commit that contains the opposite changes to the original commit. For example, if the original commit added a line of code, the revert commit would remove that line of code. This is useful when you need to undo a previous commit without completely removing it from the repository history.
+
+To revert a commit
+```c
+git rever <commit-hash>
+```
+#### Reset
+reset is a command used to remove commits from the current branch and reset the current branch to a specific commit. This can be useful if you want to undo changes or start over from a specific point in the repository history.
+
+Remove the commits from the current branch but leave the changes in the staging area. This means that you can use git commit to create a new commit with the same changes.
+```c
+git reset --soft:
+```
+
+This is the default and will remove the commits from the current branch and also remove the changes from the staging area. This means that you will need to use git add to stage the changes again before creating a new commit.
+```c
+git reset --mixed:
+```
+
+This will remove the commits from the current branch, remove the changes from the staging area, and also modify the files in your working directory to match the specified commit. This means that any changes you made since the specified commit will be lost.
+```c
+git reset --hard: 
+```
 #### Reflog
 
 ### Sharing the Repo
