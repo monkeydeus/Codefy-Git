@@ -1,12 +1,28 @@
 # Git
 ## What is Git
-### A Database
-### A Version Control System
-### A Collaboration Framework
+Git is a free and open-source distributed version control system (VCS) used for software development and other version control tasks. 
 
+With Git, you can track changes made to your code over time, collaborate with other developers, and easily revert to earlier versions of your code. Git allows developers to work on the same codebase simultaneously without the risk of overwriting each other's changes, and provides tools for resolving conflicts that may arise when multiple developers make changes to the same file.
+
+Git uses a distributed model, which means that every developer has their own copy of the code repository on their local machine. This allows developers to work offline and independently, while still being able to push their changes to a shared remote repository.
+### A Database
+When you create a new Git repository, Git stores the entire history of your project, including every change made to every file, in a series of snapshots called commits. Each commit represents a particular version of your project at a specific point in time, along with metadata like the author of the commit and the commit message.
+
+These commits are organized into a tree-like structure with branches and nodes. Each commit is a node in the graph, and is linked to its parent commits and show the history of changes made to the project over time.
+
+Git is basically a database that stores the entire history of your codebase.
+
+### A Version Control System
+A version control system just means something that helps us manage our code over time. Git is widely used in software development and other version control tasks. By allowing you to track changes, create branches, merge changes, revert to earlier versions, and collaborate with other developers, Git helps you keep your code organized and under control.
+
+### A Collaboration Framework
+Git makes it easy to collaborate with other developers by providing tools for sharing code and resolving conflicts that may arise when multiple developers make changes to the same file. Once you've made changes in a branch, you and your team can choose to merge those changes back into the main codebase when you're ready. 
 
 ## Git Setup
 ### Install
+On a Mac just type in git into the terminal and it has a built in process to automatically download and setup git for you.
+
+On Windows you can download the package directly from this url: https://git-scm.com/download/win
 ### Configure
 - user name, email at minimum
 ```c
@@ -61,6 +77,7 @@ Different trees can reference the same objects:
 
 
 ### The Stash
+The stash allows you to temporarily save changes in your working directory that are not ready to be committed. This is useful if you need to switch to a different branch or work on a different task, but want to save the changes you've made so far without committing them to the repository. You can save multiple changes to your stash that can be applied to any branch you are currently working in. 
 
 ## Using Git
 ### What is a commit?
@@ -120,6 +137,9 @@ git commit -m "commit message"
 The -m option is used to specify a commit message, which should briefly describe the changes made in the commit. Some projects will have particular requirements around the formatting of the message and can even use tools that block commits unless the message follows the desired format.
 
 After executing the commit command a unique identifier called a hash will be created. This can be used to refer to the commit in the future.
+
+#### Push
+Once you have created all of the commits in your local and want to share the code with other devs you can run the push command. This will take the branch you have checked out locally and push all commits you have created until now to the branch where other devs can then checkout those commits.
 ### Viewing The Repo
 There are several commands that you can run to give you more information about the state of your repository. 
 #### Status
@@ -265,20 +285,42 @@ This will remove the commits from the current branch, remove the changes from th
 git reset --hard: 
 ```
 #### Reflog
+The Reflog is a useful tool for managing your repository and tracking the history of changes made to your code. It provides a way to recover lost commits and branches, and can help you undo changes that may have been accidentally deleted.
 
 ### Sharing the Repo
-#### push
 
 ## Git Best Practices
+While git is a powerful way to manage code across multiple developers it is still only a tool and needs a pattern behind it in order to be succesful in a real world environment.
+
 ### Finding a Workflow
+The workflow that the team will operate on will depend on the team. Smaller teams can get away with smaller workflows and don't need to be bogged down by the extra steps in the heavier workflows like Gitflow. But as the team size grows the extra steps and processes will be required in order to ensure continuous high quality delivery of code. 
+
+You can always switch up workflows at any time. If you feel the way you are currently operating is not working there is no issue with switching over to a better fitting workflow.
+
 #### Gitflow
+This pattern involves creating two long-lived branches: a master branch for production-ready code, and a develop branch for ongoing development. Feature branches are created off the develop branch, and once they are complete, they are merged back into the develop branch. When the develop branch is stable, it is merged into the master branch for release.
 #### Monolithic/Trunk
+Trunk-based development (TBD) is a Git workflow pattern that involves working directly on the master branch, rather than using feature branches. In this workflow, developers make small, incremental changes to the codebase, committing them directly to the master branch as soon as they are complete.
 
 ### Being a good citizen
+Part of being a good developer is working in a optimal and communicative way in git. Here are a few things to keep in mind to ensure you are working optimally within your team.
 #### Commit size
+Keep commits as concise as possible. Each commit should be able to stand on its own but should not be so large that the entire development of your feature gets pushed into a single commit. 
+
+Keep the commit history clean: Avoid making "noisy" commits that don't add value to the commit history, such as committing changes that were only made to fix typos or formatting. Instead, group related changes together into a single commit, and keep the commit history as clean and organized as possible.
+
+#### Branches
+Use meaningful branch names: When creating branches, use meaningful names that describe what changes are being made on the branch. This makes it easier for other developers to understand what changes are being worked on, and helps to avoid confusion when merging branches.
+
+#### Conventions
+Follow the team's workflow: If your team has decided to follow a particular workflow, be sure to follow it consistently. This includes using the appropriate branch names, following the commit message conventions, and using the correct commands for merging and creating branches.
+
+Review and test changes thoroughly: Before pushing changes to the remote repository, review and test them thoroughly to ensure they are working as expected. This helps to avoid introducing bugs or breaking the codebase for other developers.
 #### Commit messages
+Use clear and descriptive commit messages: When committing changes, use a clear and descriptive commit message that explains what changes were made and why they were made. This helps other developers understand the changes and makes it easier to roll back changes if necessary.
 
 ### Squash into Dev, Merge into Main
+Another way to keep the commit history clean is to squash into dev and merge into main. When you squash a merge you are taking all of the commits in a single branch and merging them as one commit in the history. The result is a single atomic commit that gives you a clear when looking back at your main shared branches while allowing for the smaller more descriptive commits to exist with the feature branch. 
 
 # Further Learning
 [Tower Git](http://www.git-tower.com/learn)
