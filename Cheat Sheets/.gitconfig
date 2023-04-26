@@ -1,0 +1,74 @@
+# use git config --list --show-origin to show file locations of all items in git config
+# https://stackoverflow.com/questions/2114111/where-does-git-config-global-get-written-to
+[user]
+	name = #Your Name
+	email = #yourname@youremail
+[gui]
+	recentrepo = D:/_NEUDESIC/ClientWork/GA/Portal
+[safe]
+	directory = #""
+	directory = #""
+	directory = "*"
+[core]
+	editor = #\"C:/Users/Joe.Kraft/AppData/Local/Programs/Microsoft VS Code/code.exe\" --wait
+	autocrlf = true
+[merge]
+	tool = vscode
+[diff]
+	guitool = vscode
+[difftool "vscode"]
+	path = #C:/Users/Joe.Kraft/AppData/Local/Programs/Microsoft VS Code/code.exe
+	cmd =  #\"C:/Users/Joe.Kraft/AppData/Local/Programs/Microsoft VS Code/code.exe\" --wait --diff \"$LOCAL\" \"$REMOTE\"
+[mergetool "vscode"]
+	path = #C:/Users/Joe.Kraft/AppData/Local/Programs/Microsoft VS Code/code.exe
+	cmd = #"\"C:/Users/Joe.Kraft/AppData/Local/Programs/Microsoft VS Code/code.exe\" --wait \"$MERGED\" "
+[pull]
+	rebase = false
+[fetch]
+	prune = false
+[rebase]
+	autoStash = false
+[alias]
+	slog = log --format=oneline --abbrev-commit #"short log"
+	co = checkout
+	stat = status
+	st = status
+	lol = log --graph --decorate --pretty=oneline --abbrev-commit --all #"log one line"
+	pj = remote update --prune #"prune juice"
+	showConfig = config --global -l
+	Show-Config = config --global -l
+	oops = reset --soft
+	hoops = reset --hard
+	moops = reset --mixed
+	cam = commit -am
+	xslog = log --format=oneline --abbrev-commit --name-status #"extended short log"
+	bv = branch -v #branch verbose: shows list of branches, active branch, and latest commit for each branch
+	branches = branch -v
+	showBranches = branch -v
+	bbb = bv #alias an alias
+	delRemote = push -d origin #delete remote branch
+	rbranch = branch -r #show branches on remote
+	rbr = branch -r
+	delbr = branch -d #delete branch
+	del-branch = branch -d #delete branch
+	last = log -1 HEAD
+	setAlias = "!f() { git config --global alias.\"$1\" \"$2\"; }; f"
+	# ex. git setAlias <shortcut> <"git command line args">
+	# --note can alias an alias, e.g. git setAlias xsl xslog
+	# enclose the command and it's args in quotes as an atomic command
+	fdb = branch -D #force delete branch
+	xsl = xslog #alias an alias
+	ec = config --edit --global #opens editor tool (if defined) and edits user .gitconfig
+	diffy = difftool -y
+	diffnow = diffy HEAD #show differences between staging area and HEAD
+	
+
+
+
+
+
+[difftool "sourcetree"]
+	cmd = '' \"$LOCAL\" \"$REMOTE\"
+[mergetool "sourcetree"]
+	cmd = "'' "
+	trustExitCode = true
