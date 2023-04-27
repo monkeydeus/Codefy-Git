@@ -193,10 +193,9 @@ Analagous to directories.  Shows directory/file structure at time of commit
 
 Different trees can reference the same objects:
 
-![[Pasted image 20230414152321.png]]
+![Image](images/Pasted%20image%2020230414152321.png) 
 
-![[Pasted image 20230414152240.png]]
-
+![Image](images/Pasted%20image%2020230414152240.png) 
 
 ##### Commits
 - A **unique** collection of tree and blobs.  
@@ -434,8 +433,6 @@ log -1 HEAD
 http://git-scm.com/docs/pretty-formats
 ```
 
-=== PICK UP HERE ===
-
   ```ad-warning
   Log can be used for a RANGE of commits as well
 
@@ -568,7 +565,8 @@ The reflog tracks EVERY time a reference moves in the repository (represented by
 reflog is a useful command for managing your repository and tracking the history of changes made to your code. It provides a way to recover lost commits and branches, and can help you undo changes that may have been accidentally deleted.
 
 Entries in the reflog also have hash identifiers - not every object shown in the reflog is going to be a commit object:
-![[Pasted image 20230427120912.png]]
+
+![Image](images/Pasted%20image%2020230427120912.png) 
 
 ```ad-note
 title:Reflog Syntax
@@ -595,11 +593,9 @@ Interactive rebase can also be used to groom local branches, eliminating unimpor
 ```c
 git rebase -i <beginning from (exclusive)>
 ```
-![[_Pasted_Images/Pasted image 20230330115324.png]]
-
+![Image](images/Pasted%20image%2020230330115324.png) 
 add squashes:
-![[_Pasted_Images/Pasted image 20230330115538.png]]
-
+![Image](images/Pasted%20image%2020230330115538.png) 
 Interactive rebase will go through all the included steps and pause where user input is required, in order to create the final rebased history
 
 
