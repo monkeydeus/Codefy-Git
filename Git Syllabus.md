@@ -276,11 +276,10 @@ git checkout --detach [<branch name>]
 git checkout [--detach] <commit hash>   //note detach argument is not strictly required when checking out a commit directly
 ```
 
-```ad-note
-Git gives a good explanation of the detached status and your options 
-![[Pasted image 20230427115028.png]]
-```
 
+Git gives a good explanation of the detached status and your options 
+
+![Image](images/Pasted%20image%2020230427115028.png) 
 ### Creating a Repo
 A GitHub repo, or repository, is a location where code and other files associated with a project are stored and managed using Git version control.
 
