@@ -157,7 +157,7 @@ https://winmerge.org/?lang=en
 
 ## Git Internals
 ### The Working Directory
-The current files committed to the repository or WIP
+The local set of files that can be managed by .git. Any files or folders in the same directory as the .git folder, and any child directories, are considered the working directory
 
 ### The Staging Area (Index)
 The collection of files that will be added to or modified with the next commit.  Exists to to provide decoupling between working files and commits (can commit some of current changes separately from others, for better traceability/workflow)
