@@ -126,6 +126,7 @@ https://desktop.github.com/
 
 #### Git Kraken (free)
 - Same company that publishes GitLens for VSCode
+
 https://www.gitkraken.com/
 
 #### SourceTree (free)
