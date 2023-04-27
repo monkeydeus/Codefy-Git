@@ -30,10 +30,12 @@
 	autoStash = false
 [alias]
 	slog = log --format=oneline --abbrev-commit #"short log"
+	lol = log --graph --decorate --pretty=oneline --abbrev-commit --all #"log one line"
+	xslog = log --format=oneline --abbrev-commit --name-status #"extended short log"
+	last = log -1 HEAD
 	co = checkout
 	stat = status
 	st = status
-	lol = log --graph --decorate --pretty=oneline --abbrev-commit --all #"log one line"
 	pj = remote update --prune #"prune juice"
 	showConfig = config --global -l
 	Show-Config = config --global -l
@@ -41,7 +43,6 @@
 	hoops = reset --hard
 	moops = reset --mixed
 	cam = commit -am
-	xslog = log --format=oneline --abbrev-commit --name-status #"extended short log"
 	bv = branch -v #branch verbose: shows list of branches, active branch, and latest commit for each branch
 	branches = branch -v
 	showBranches = branch -v
@@ -51,7 +52,6 @@
 	rbr = branch -r
 	delbr = branch -d #delete branch
 	del-branch = branch -d #delete branch
-	last = log -1 HEAD
 	setAlias = "!f() { git config --global alias.\"$1\" \"$2\"; }; f"
 	# ex. git setAlias <shortcut> <"git command line args">
 	# --note can alias an alias, e.g. git setAlias xsl xslog
