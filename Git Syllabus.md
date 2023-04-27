@@ -168,6 +168,7 @@ The collection of files that will be added to or modified with the next commit. 
 Git's representation of the working directory.  Represents the total collection of files and folders that are **tracked** by git
 
 ### The Database
+Comprises all of the folders and files in the .git directory
 #### Database Objects
 ```sh
 git count-objects -H -v //Shows top-level information about the database -H human readable, -v verbose
