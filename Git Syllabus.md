@@ -53,13 +53,10 @@ C:/users/< user>/.gitconfig
 
 Config files are also included in a repository to define separate configurations (such as remotes) for that particular repository.  When a new repository is created, git automatically creates a config for it.
 
-```ad-tip
-title: Config Hierarchy
-Git config files are used in a hierarchy.  
-- Each key from each config file (System, User, Repository) will be loaded into git
-- The closest config file will win if the same key is defined in different config files 
-```
-
+> 💡 **Config Hierarchy**
+  Git config files are used in a hierarchy.  
+	  Each key from each config file (System, User, Repository) will be loaded into git  
+	  The closest config file will win if the same key is defined in different config files 
 
 To work with git, you will need to define at a minimum a user name and email. If either of these keys are not found, a commit will fail with an error message describing the missing key.
 
@@ -134,7 +131,7 @@ https://www.gitkraken.com/
 #### SourceTree (free)
 https://www.sourcetreeapp.com/
 
-#### Tortoise Git for Windows (free)
+#### Tortoise Git for Windows
 - Shell integration
 https://tortoisegit.org/
 
@@ -159,7 +156,7 @@ https://winmerge.org/?lang=en
 
 ## Git Internals
 ### The Working Directory
-The local set of files that can be managed by .git. Any files or folders in the same directory as the .git folder, and any child directories, are considered the working directory
+The current files committed to the repository or WIP
 
 ### The Staging Area (Index)
 The collection of files that will be added to or modified with the next commit.  Exists to to provide decoupling between working files and commits (can commit some of current changes separately from others, for better traceability/workflow)
@@ -168,7 +165,6 @@ The collection of files that will be added to or modified with the next commit. 
 Git's representation of the working directory.  Represents the total collection of files and folders that are **tracked** by git
 
 ### The Database
-Comprises all of the folders and files in the .git directory
 #### Database Objects
 ```sh
 git count-objects -H -v //Shows top-level information about the database -H human readable, -v verbose
@@ -178,24 +174,20 @@ git cat-file --batch-all-objects --batch-check //shows ALL objects in the databa
 ##### Blobs
 Files in the git database.  Use git cat-file to see contents.
 
-```ad-note
-title: Files and Blobs
-A "file" exists in two places in a git repository:
-
-- Working Directory
-- Repo blob
-
-Even if a file is deleted from the Working Directory, it can be restored from the repository!
-```
+> 📝 **A "file" exists in two places in a git repository:**
+>-   Working Directory
+>-   Repo blob
+>
+> Even if a file is deleted from the Working Directory, it can be restored from the repository!
 
 ##### Trees
 Analagous to directories.  Shows directory/file structure at time of commit
 
 Different trees can reference the same objects:
 
-![Image](images/Pasted%20image%2020230414152321.png) 
+![Image](images/Pasted%20image%2020230414152321.png)
 
-![Image](images/Pasted%20image%2020230414152240.png) 
+![Image](images/Pasted%20image%2020230414152240.png)
 
 ##### Commits
 - A **unique** collection of tree and blobs.  
@@ -207,27 +199,20 @@ Different trees can reference the same objects:
 	- commiter
 	- message
 
-```ad-question
-- When would a commit have more than one parent?
-- Why would there be an author AND a committer?
-```
-
+> ❓
+> - When would a commit have more than one parent?
+> - Why would a commit have and author AND a committer?
 
 ```c
 $git cat-file -p < hash >
 $cat < filename >
 ```
   
+> 🔥 **FILES != OBJECTS**
+> - If a FILE is deleted, the OBJECT representing the file still exists. The TREE representing the working directory will not have references to those files though, so eventually garbage collection will delete the 'Unreferenced' objects.
+>
+    -Branching from a commit that had a tree referencing the deleted files will restore the FILES to the working directory from the OBJECTS in the database
 
-  ```ad-important
-FILES != OBJECTS
-
-- If a FILE is deleted, the OBJECT representing the file still exists. The TREE representing the working directory will not have references to those files though, so eventually garbage collection will delete the 'Unreferenced' objects.
-
-
-- Branching from a commit that had a tree referencing the deleted files will restore the FILES to the working directory from the OBJECTS in the database
-```
-  
 ### The Stash
 The stash allows you to temporarily save changes in your working directory that are not ready to be committed. This is useful if you need to switch to a different branch or work on a different task, but want to save the changes you've made so far without committing them to the repository. You can save multiple changes to your stash that can be applied to any branch you are currently working in.
 
@@ -247,26 +232,21 @@ A commit is a snapshot of the current state of a Git repository. It includes a s
 
 ### What is a branch?
 
-```ad-tip
-- A BRANCH is simply a NAMED POINTER to a commit.  As commits are made to the branch, the pointer will point to the most recent commit on the branch (refs/heads/<branch name>)
-- When a branch is checked out, the HEAD file is updated to reference the checked out branch
-```
+> 💡 **Branches**
+>-  A BRANCH is simply a NAMED POINTER to a commit.  As commits are made to the branch, the pointer will point to the most recent commit on the branch (refs/heads/< branch name>)  
+>- When a branch is checked out, the HEAD file is updated to reference the checked out branch
 
 A branch is a separate line of development in a Git repository. It's essentially a copy of the codebase at a certain point in time, and you can make changes to it without affecting the main codebase. This allows you to experiment with new features or make changes without worrying about breaking the existing code. Braches are made up of commits, and you can see the entire history of a single branch by checking its commit history
 
-```ad-question
-How is a BRANCH the opposite of a MERGE? (You may need to scroll down a bit to answer this right now ;) )
-```
+>❓ How is a BRANCH the opposite of a MERGE? (You may need to scroll down a bit to answer this right now ;) )
+
 
 
 ### What is the HEAD?
 HEAD is an indirect reference to the latest commit in the active branch, so identifies the current commit and defines the parent of the next commit. Each new commit results in HEAD pointing to the newest commit.
 
-```ad-question
-title: What is a DETACHED HEAD?
-A detached head is the state when HEAD references a specific commit hash, rather than a branch.  If commits are made in this state, they will be lost (eventually) if a branch is checked out, because there will be no durable reference to commits made in the detached state. This can be useful if you wish to do experimentation or throwaway commits without having to be concerned about someone else seeing them, or causing any sort of merge problems.
-
-
+>❓ What is a DETACHED HEAD?
+ A detached head is the state when HEAD references a specific commit hash, rather than a branch.  If commits are made in this state, they will be lost (eventually) if a branch is checked out, because there will be no durable reference to commits made in the detached state. This can be useful if you wish to do experimentation or throwaway commits without having to be concerned about someone else seeing them, or causing any sort of merge problems.
 
 [Detached Head](https://git-scm.com/docs/git-checkout)
 ```  
@@ -276,10 +256,9 @@ git checkout --detach [<branch name>]
 git checkout [--detach] <commit hash>   //note detach argument is not strictly required when checking out a commit directly
 ```
 
+> 📝Git gives a good explanation of the detached status and your options 
+![Image](images/Pasted%20image%2020230427115028.png)
 
-Git gives a good explanation of the detached status and your options 
-
-![Image](images/Pasted%20image%2020230427115028.png) 
 ### Creating a Repo
 A GitHub repo, or repository, is a location where code and other files associated with a project are stored and managed using Git version control.
 
@@ -295,10 +274,10 @@ This initializes the Git repository in by creating a .git directory with subdire
 
 Once a Git repository is initialized with git init, you can use other Git commands to manage your code. Note this only initializes a repository locally, you still need to publish the repository to github in order to view and share your code to others.
 
-```ad-tip
-title: Clone
-In order to access a remote repository you will use git clone. This is used to create a copy of a remote Git repository on your local machine. The cloned repository is an exact copy of the remote repository, including all branches, tags, and commit history. You can usually find the clone url by visiting the Github page of the repo you are trying to clone.
-
+>💡 **Clone**
+>In order to access a remote repository you will use git clone. This is used to create a copy of a remote Git repository on your local machine. The cloned repository is an exact copy of the remote repository, including all branches, tags, and commit history. 
+>
+>You can usually find the clone url by visiting the Github page of the repo you are trying to clone.
 
 ```c
 git clone https://github.com/username/repository.git
@@ -322,9 +301,7 @@ Adds files to staging area, a necessary precursor to committing
 ### Removing Files
 rm removes files from the index, or the index + working tree
 
-```ad-hint
-There is no git command to only remove files from the working tree.  Delete the file outside of git.
-```
+> 💡 There is no git command to only remove files from the working tree.  Delete the file outside of git.
 
 ```c
 git rm <filename> // 
@@ -350,9 +327,7 @@ git difftool -y <object|hash> <object|hash> //invokes defined difftool to show f
 
 ```
 
-```ad-important
-Once a file is added to the index, any changes made after are done to a CACHED copy of the file.  You must use git add AGAIN to get the new changes staged
-```
+> 🔥 Once a file is added to the index, any changes made after are done to a CACHED copy of the file.  You must use git add AGAIN to get the new changes staged
 
 ```c
 git reset HEAD // unstages any changes in the index 
@@ -369,16 +344,13 @@ git commit <pathspec>
 
 The -m option is used to specify a commit message, which should briefly describe the changes made in the commit. Some projects will have particular requirements around the formatting of the message and can even use tools that block commits unless the message follows the desired format.
 
-```ad-hint
-http://whatthecommit.com
-```
+> 💡 http://whatthecommit.com 
 
 After executing the commit command a unique identifier called a hash will be created. This can be used to refer to the commit in the future.
 
-```ad-important
-title: Every Object is a NEW Object
-Git objects are IMMUTABLE. This means if ANY CHANGES at all need to be made to an object, a COPY of the object will be made, the changes will be added, and any references to the old version will be removed
-```
+> 💡 **Every Object is a NEW Object**
+> Git objects are IMMUTABLE. This means if ANY CHANGES at all need to be made to an object, a COPY of the object will be made, the changes will be added, and any references to the old version will be removed
+
 
 ### Viewing The Repo
 
@@ -395,9 +367,8 @@ git show //by default shows difference between specified commit and it's PARENT
 git cat-file -p <object hash> //similar to show, but includes more database metadata in the output
 ```
 
-```ad-hint
-show command accepts same formatting options as log  //use alias
-```
+> 💡 the  show command accepts same formatting options as log  //use alias
+
 
 Git blobs contain ENTIRE contents of files - diff calculates differences on the fly
 
@@ -408,11 +379,9 @@ Can compare specific files within commits
 #### log
 Display a chronological list of commits in a repository. It shows the commit history of a branch, along with the author and committer information, the commit message, date and hash of each commit
 
-```ad-tip
-git log is one of the most useful, but complex commands in git
-
-https://git-scm.com/docs/git-log
-```
+> 🔥 git log is one of the most useful, but complex commands in git
+> https://git-scm.com/docs/git-log
+> http://git-scm.com/docs/pretty-formats
 
 ```c
 git log
@@ -428,15 +397,12 @@ git log
 log -1 HEAD
 ```
 
-```ad-hint
-http://git-scm.com/docs/pretty-formats
-```
+> 🔥   Log can be used for a RANGE of commits as well
 
-  ```ad-warning
-  Log can be used for a RANGE of commits as well
-
-git log <starting (oldest) condition>(exclusive)..<end (newest) condition>(inclusive) //show commits from start to end, e.g. git log HEAD~5..HEAD^ --oneline <-- shows commmits from 5 steps before head, to the parent of HEAD  
+```c
+git log <starting (oldest) condition>(exclusive)..<end (newest) condition>(inclusive) //show commits from start to end, e.g. git log HEAD~5..HEAD^ --oneline <-- shows commmits from 5 steps before head, to the parent of HEAD
 ```
+ 
 
 ### Moving within the Repo
 You will need to know how to navigate between branches in order to succesfully contribute your code
@@ -505,26 +471,20 @@ git merge feature-branch
   
 This command will take all of the changes in your feature-branch into the main branch and create a merge commit
 
-```ad-hint
-Technically, a merge creates a NEW commit with TWO parent commits - the last commit from each of the two branches involved in the merge
-```
+> 💡 Technically, a merge creates a NEW commit with TWO parent commits - the last commit from each of the two branches involved in the merge
+
 
 #### Rebase
 
 The rebase command can be used to apply changes from one branch onto another. Unlike git merge, which creates a new merge commit, git rebase applies changes from one branch directly on top of another branch's history, resulting in a linear project history. This changes the history of the branch you are rebasing into, which can make the history difficult to trace. 
 
-```ad-hint
-Where merge creates a commit with two parents, rebase will maintain a linear commit chain in which each commit has a single parent
-```
 
-```ad-warning
-NEVER rebase a branch that has been pushed to a remote repository.  BAD THINGS WILL HAPPEN
-```
+> 💡 Where merge creates a commit with two parents, rebase will maintain a linear commit chain in which each commit has a single parent
+
+> 🛑 NEVER rebase a branch that has been pushed to a remote repository.  BAD THINGS WILL HAPPEN
 
 ### Fixing the Repo
-
 Sometimes we run commands and make changes to our repo that we do not intend to make. Here are a few options to undo the changes that have been made.
-  
 
 #### Conflicts
 Sometimes when you are merging code you will have conflicts between two of the same files. This occurrs when two contributors make changes to the same part of the same file, git will give you conflict markers and will allow you to decide which of the changes to include.
@@ -564,25 +524,16 @@ The reflog tracks EVERY time a reference moves in the repository (represented by
 reflog is a useful command for managing your repository and tracking the history of changes made to your code. It provides a way to recover lost commits and branches, and can help you undo changes that may have been accidentally deleted.
 
 Entries in the reflog also have hash identifiers - not every object shown in the reflog is going to be a commit object:
+![Image](images/Pasted%20image%2020230427120912.png)
 
-![Image](images/Pasted%20image%2020230427120912.png) 
-
-```ad-note
-title:Reflog Syntax
-
-Entries in the reflog are labeled with their proximity to the current state:
-
-Current entry is labeled HEAD@{0}
-Previous entry is labeled HEAD@{1}, etc.
-
-&nbsp;
-
+>📝**Reflog Syntax**
+Entries in the reflog are labeled with their proximity to the current state: current entry is labeled HEAD@{0}, 
+previous entry is labeled HEAD@{1}, etc.
+>
 These labels can be used in other commands like show and log:
- 
+ >
 git show HEAD@{4}
-
 git log HEAD@{10}..HEAD@{2}
-```
   
 #### Interactive Rebase
 You can also fix errors by creating a new commit with the corrected code, and rebasing to squash previous commits into the new commit, essentially overwriting the error commit.
@@ -592,9 +543,9 @@ Interactive rebase can also be used to groom local branches, eliminating unimpor
 ```c
 git rebase -i <beginning from (exclusive)>
 ```
-![Image](images/Pasted%20image%2020230330115324.png) 
+![Image](images/Pasted%20image%2020230330115324.png)
 add squashes:
-![Image](images/Pasted%20image%2020230330115538.png) 
+![Image](images/Pasted%20image%2020230330115538.png)
 Interactive rebase will go through all the included steps and pause where user input is required, in order to create the final rebased history
 
 
@@ -612,15 +563,9 @@ Retrieves changes from a remote branch, but does not merge them into your local 
 #### Pull
 Retrieves changes from a remote branch and merges them into your current branch
 
-```ad-tip
-title: Working with Others
-It is a good idea to pull code frequently if you know others are making changes to a branch you are using or will be merging into.  This can help isolate merge conflicts to your local environment, and minimize the impact of these conflicts on your codebase.
+> 💡 **Working with Others**
+ It is a good idea to pull code frequently if you know others are making changes to a branch you are using or will be merging into.  This can help isolate merge conflicts to your local environment, and minimize the impact of these conflicts on your codebase.  Update strategies will be discussed futher in the next session of the workshop
 
-&nbsp;
-
-Update strategies will be discussed futher in the next session of the workshop
-
-```
 
 ## Git Best Practices
 While git is a powerful way to manage code across multiple developers it is still only a tool and needs a pattern behind it in order to be succesful in a real world environment.
@@ -644,7 +589,6 @@ Part of being a good developer is working in a optimal and communicative way in 
 Keep commits as concise as possible. Each commit should be able to stand on its own but should not be so large that the entire development of your feature gets pushed into a single commit.
 
 Keep the commit history clean: Avoid making "noisy" commits that don't add value to the commit history, such as committing changes that were only made to fix typos or formatting. Instead, group related changes together into a single commit, and keep the commit history as clean and organized as possible.  (rebase -i is your friend here 😊 )
-  
 
 #### Branches
 Use meaningful branch names: When creating branches, use meaningful names that describe what changes are being made on the branch. This makes it easier for other developers to understand what changes are being worked on, and helps to avoid confusion when merging branches.
