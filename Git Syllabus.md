@@ -110,7 +110,7 @@ git qm master
 #### VS Code
 https://code.visualstudio.com/
 
-#### GitLens
+##### GitLens
 https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens
 
 #### Webstorm
