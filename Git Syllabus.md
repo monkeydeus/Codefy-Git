@@ -132,7 +132,7 @@ https://www.gitkraken.com/
 #### SourceTree (free)
 https://www.sourcetreeapp.com/
 
-#### Tortoise Git for Windows
+#### Tortoise Git for Windows (free)
 - Shell integration
 https://tortoisegit.org/
 
