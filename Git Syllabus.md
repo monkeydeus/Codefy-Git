@@ -501,7 +501,52 @@ This command will take all of the changes in your feature-branch into the main b
 
 
 #### Rebase
+```mermaid
+gitGraph
 
+    commit id: "A"
+
+    commit id: "B"
+
+    commit id: "C"
+
+    branch develop
+
+    checkout develop
+
+    commit id: "D" type: HIGHLIGHT
+
+    checkout main
+
+    commit id: "F"
+
+    commit id: "G"
+
+    checkout develop
+
+    commit id: "E" type: HIGHLIGHT
+
+    commit id: "H" type: HIGHLIGHT
+```
+```mermaid
+gitGraph
+
+    commit id: "A"
+
+    commit id: "B"
+
+    commit id: "C"
+
+    commit id: "F"
+
+    commit id: "G"
+
+    commit id: "D" type: HIGHLIGHT
+
+    commit id: "E" type: HIGHLIGHT
+
+    commit id: "H" type: HIGHLIGHT
+```
 The rebase command can be used to apply changes from one branch onto another. Unlike git merge, which creates a new merge commit, git rebase applies changes from one branch directly on top of another branch's history, resulting in a linear project history. This changes the history of the branch you are rebasing into, which can make the history difficult to trace. 
 
 
