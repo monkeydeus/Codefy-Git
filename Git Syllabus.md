@@ -110,7 +110,7 @@ git qm master
 #### VS Code
 https://code.visualstudio.com/
 
-#### GitLens
+##### GitLens
 https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens
 
 #### Webstorm
@@ -126,12 +126,13 @@ https://desktop.github.com/
 
 #### Git Kraken (free)
 - Same company that publishes GitLens for VSCode
+
 https://www.gitkraken.com/
 
 #### SourceTree (free)
 https://www.sourcetreeapp.com/
 
-#### Tortoise Git for Windows
+#### Tortoise Git for Windows (free)
 - Shell integration
 https://tortoisegit.org/
 
@@ -156,7 +157,7 @@ https://winmerge.org/?lang=en
 
 ## Git Internals
 ### The Working Directory
-The current files committed to the repository or WIP
+The local set of files that can be managed by .git. Any files or folders in the same directory as the .git folder, and any child directories, are considered the working directory
 
 ### The Staging Area (Index)
 The collection of files that will be added to or modified with the next commit.  Exists to to provide decoupling between working files and commits (can commit some of current changes separately from others, for better traceability/workflow)
@@ -248,8 +249,7 @@ HEAD is an indirect reference to the latest commit in the active branch, so iden
 >❓ What is a DETACHED HEAD?
  A detached head is the state when HEAD references a specific commit hash, rather than a branch.  If commits are made in this state, they will be lost (eventually) if a branch is checked out, because there will be no durable reference to commits made in the detached state. This can be useful if you wish to do experimentation or throwaway commits without having to be concerned about someone else seeing them, or causing any sort of merge problems.
 
-[Detached Head](https://git-scm.com/docs/git-checkout)
-```  
+[Detached Head](https://git-scm.com/docs/git-checkout) 
 
 ```c
 git checkout --detach [<branch name>]
