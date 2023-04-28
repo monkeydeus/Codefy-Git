@@ -227,6 +227,31 @@ git stash clear
   
 
 ## Using Git
+```mermaid
+flowchart LR
+
+    id1[Working Directory] -- add --> id2[Staging Aread] -- commit --> id3[(Repo)]
+```
+```mermaid
+flowchart LR
+
+    id1[Working Directory]
+
+    -- add -->
+
+    Stash  
+
+    id1
+
+    -- add -->
+
+    id2[Staging Area]
+
+    -- commit -->
+
+    id3[(Repo)]
+```
+
 
 ### What is a commit?
 A commit is a snapshot of the current state of a Git repository. It includes a set of changes to the repository's files that you've made since the last commit, along with a commit message describing the changes. Commits allow you to keep track of changes to your code over time
