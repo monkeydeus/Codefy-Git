@@ -447,6 +447,32 @@ A tag is a label or bookmark that is associated with a specific commit in a repo
 ### Modifying the Repo
 
 #### Merge
+
+
+```mermaid
+gitGraph
+
+    commit
+
+    commit
+
+    branch develop
+
+    checkout develop
+
+    commit
+
+    commit
+
+    checkout main
+
+    merge develop
+
+    commit
+
+    commit
+```
+
 Merge is a command that is used to combine changes from one branch into another. It is one of the core features of Git that enables collaboration among developers working on the same project.
 
 As an example, lets say we have a feature branch that we want to merge back into our main branch.
