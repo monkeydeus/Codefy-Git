@@ -249,8 +249,7 @@ HEAD is an indirect reference to the latest commit in the active branch, so iden
 >❓ What is a DETACHED HEAD?
  A detached head is the state when HEAD references a specific commit hash, rather than a branch.  If commits are made in this state, they will be lost (eventually) if a branch is checked out, because there will be no durable reference to commits made in the detached state. This can be useful if you wish to do experimentation or throwaway commits without having to be concerned about someone else seeing them, or causing any sort of merge problems.
 
-[Detached Head](https://git-scm.com/docs/git-checkout)
-```  
+[Detached Head](https://git-scm.com/docs/git-checkout) 
 
 ```c
 git checkout --detach [<branch name>]
