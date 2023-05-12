@@ -29,6 +29,7 @@
 [rebase]
 	autoStash = false
 [alias]
+	somebranch = branch -m
 	slog = log --format=oneline --abbrev-commit #"short log"
 	lol = log --graph --decorate --pretty=oneline --abbrev-commit --all #"log one line"
 	xslog = log --format=oneline --abbrev-commit --name-status #"extended short log"
